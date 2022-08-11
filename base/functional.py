@@ -1,0 +1,2 @@
+class Functional(object):
+    pass

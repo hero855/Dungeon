@@ -12,7 +12,7 @@ class Chank(object):
         self.length = length  # lengthier of rows and elms
         self.is_generated = False
         self.is_sanded_message = False
-        self.heights_map = Axis([Axis([])])
+        self.heights_map = Axis([])
 
     def update(self):
         if not self.is_generated:
@@ -44,8 +44,10 @@ class Chank(object):
 
     def generate_heights(self):
         for row in range(self.length):
+            self.heights_map[row] = Axis([])
             for elm in range(self.length):
                 height = 10
+                print(f'{row = } {self.heights_map[row] = }')
                 self.heights_map[row][elm] = height
 
     def generate_blocks(self):

@@ -52,13 +52,8 @@ class Axis:
         if value is None:
             raise ValueError("Axis cant set None")
         
-        if target not in range(-self.half, self.half):
+        if target + self.half not in range(-self.half, self.half):
             self._calcUpTo(target + 1)
-
-        print(f'{self.values = }')
-        print(f'{target = }')
-        print(f'{self.half = }')
-        print(f'{value = }')
 
         self.values[target + self.half] = value
 

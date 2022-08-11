@@ -1,6 +1,5 @@
 from Generations.chank import Chank
 from Generations.axis import Axis
-from opensimplex import OpenSimplex
 
 from Blocks.Functional.spike import Spike
 from Blocks.air import Air
@@ -13,7 +12,6 @@ class Area(object):
         self.name = name
         self.len_of_chank = len_of_chank
 
-        # self.simplex = OpenSimplex
         self.map = Axis([Axis([Axis([None])])])
         self.chank_map = Axis([Axis([Chank(self, 0, 0)])])
         self.chank_map[0][0].generate_heights()

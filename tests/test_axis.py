@@ -1,13 +1,10 @@
 import unittest
-import sys
 
-sys.path.append('C:/code/Dungeon')
-
-from Generations.axis import Axis, OutOfRangeValue
+from Generations.axis import Axis
 
 
 class AxisTestCase(unittest.TestCase):
-    def setUp(self) -> None:
+    def setUp(self):
         self.a1 = Axis([n for n in range(5)])  # [0, 1, 2, 3, 4]
         self.a2 = Axis([n for n in range(-2, 3)])  # [-2, -1, 0, 1, 2]
 
@@ -60,8 +57,8 @@ class AxisTestCase(unittest.TestCase):
         self.assertEqual(self.a1[-3], -1)
         self.assertEqual(self.a1.values, list(range(-1, 6)))
         with self.assertRaises(ValueError):
-            self.a1.append_left(OutOfRangeValue)
-            self.a1.append_right(OutOfRangeValue)
+            self.a1.append_left(None)
+            self.a1.append_right(None)
 
 
 if __name__ == '__main__':

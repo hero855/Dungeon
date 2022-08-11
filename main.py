@@ -1,6 +1,8 @@
 import time
 import os
 
+os.system('python -m unittest')
+
 from Generations.area import Area
 from Functions.smart_input import smart_input
 from Functions.effect import effect

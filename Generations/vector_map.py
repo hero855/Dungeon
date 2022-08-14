@@ -13,25 +13,25 @@ from Generations.vector import Vector
 #
 # os.system('cls')
 #
-# x_len = int(self.ELMS / (self.LEN_OF_CHANK * 2))
-# y_len = int(self.ROWS / (self.LEN_OF_CHANK * 2))
-# z_len = int(self.LAYS / (self.LEN_OF_CHANK * 2))
+# x_len = int(self.ELMS / (self.LEN_OF_CHUNK * 2))
+# y_len = int(self.ROWS / (self.LEN_OF_CHUNK * 2))
+# z_len = int(self.LAYS / (self.LEN_OF_CHUNK * 2))
 #
 # list_of_axis = list()
 # for row in range(-y_len, y_len):
-#     list_of_chanks = list()
+#     list_of_chunks = list()
 #     for elm in range(-x_len, x_len):
-#         chank = Chank(row, elm, self, length=self.LEN_OF_CHANK)
-#         list_of_chanks.append(chank)
-#     axis = Axis(list_of_chanks)
+#         chunk = Chunk(row, elm, self, length=self.LEN_OF_CHUNK)
+#         list_of_chunks.append(chunk)
+#     axis = Axis(list_of_chunks)
 #     list_of_axis.append(axis)
-# self.chank_map = Axis(list_of_axis)
+# self.chunk_map = Axis(list_of_axis)
 #
-# self.vector_map = Axis([Axis([[] for elm in range(math.ceil(self.ELMS / self.LEN_OF_CHANK))]) for row in
-#                         range(math.ceil(self.ROWS / self.LEN_OF_CHANK))])
+# self.vector_map = Axis([Axis([[] for elm in range(math.ceil(self.ELMS / self.LEN_OF_CHUNK))]) for row in
+#                         range(math.ceil(self.ROWS / self.LEN_OF_CHUNK))])
 #
-# map_ = Axis([Axis([None for elm in range(math.ceil(self.ELMS / self.LEN_OF_CHANK + 2))]) for row in range(
-#     math.ceil(self.ROWS / self.LEN_OF_CHANK + 2))])
+# map_ = Axis([Axis([None for elm in range(math.ceil(self.ELMS / self.LEN_OF_CHUNK + 2))]) for row in range(
+#     math.ceil(self.ROWS / self.LEN_OF_CHUNK + 2))])
 #
 # vector_row = -math.ceil(len(self.vector_map) / 2)
 # for row in range(-map_.RADIUS, map_.RADIUS):
@@ -55,18 +55,18 @@ from Generations.vector import Vector
 #
 # del map_
 #
-# self.chank_map[0][0].generator()
+# self.chunk_map[0][0].generator()
 #
 #
-# # chank.msg()
+# # chunk.msg()
 
 class VectorMap:
-    def __init__(self, elms, rows, len_of_chank):
-        self.vector_map = Axis([Axis([[] for _ in range(math.ceil(elms / len_of_chank))]) for _ in
-                                range(math.ceil(rows / len_of_chank))])
+    def __init__(self, elms, rows, len_of_chunk):
+        self.vector_map = Axis([Axis([[] for _ in range(math.ceil(elms / len_of_chunk))]) for _ in
+                                range(math.ceil(rows / len_of_chunk))])
 
-        map_ = Axis([Axis([None for _ in range(math.ceil(elms / len_of_chank + 2))]) for _ in range(
-            math.ceil(rows / len_of_chank + 2))])
+        map_ = Axis([Axis([None for _ in range(math.ceil(elms / len_of_chunk + 2))]) for _ in range(
+            math.ceil(rows / len_of_chunk + 2))])
 
         vector_row = -math.ceil(len(self.vector_map) / 2)
         for row in range(-map_.half, map_.half):

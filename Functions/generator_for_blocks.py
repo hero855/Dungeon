@@ -17,7 +17,7 @@ from Blocks.Functional.chest import Chest
 from Generations.rooms import Rooms, Room
 
 
-def generator_for_blocks(location, map_, height_of_ground):
+def generator_for_blocks(location, area, height_of_ground):
 
     x = location.x
     y = location.y
@@ -46,5 +46,7 @@ def generator_for_blocks(location, map_, height_of_ground):
         # elif num in range(12 * 100): block = IronOreBlock
         # elif num in range(40 * 100): block = StoneBlock
         # else:                        block = GroundBlock
-
-    map_[z][y][x] = block()
+    
+    # print(f"{z = }; {y = }; {x = }")
+    
+    area.map[z, y, x] = block()

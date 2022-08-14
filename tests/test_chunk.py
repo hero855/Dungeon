@@ -1,13 +1,14 @@
 import unittest
 
-from Generations.chank import Chank
+from Generations.chunk import Chunk
 from Generations.area import Area
 
 
-class ChankTestCase(unittest.TestCase):
+class ChunkTestCase(unittest.TestCase):
     def setUp(self) -> None:
-        self.area = Area('Test')
-        self.chank = self.area.chank_map
+        # self.area = Area('Test')
+        # self.chunk = self.area.chunk_map
+        pass
 
     # TODO: tests
     def test_generation(self):

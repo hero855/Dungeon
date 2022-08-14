@@ -1,6 +1,8 @@
 import time
 import os
 
+os.system('python -m unittest')
+
 from Generations.area import Area
 from Functions.smart_input import smart_input
 from Functions.effect import effect
@@ -11,13 +13,15 @@ from links import directions, actions, spec_input
 
 area = Area('TestArea')
 player = Player(area)
+area.initial_update()
 area.update(player.location)
-area.map[0][0][0] = player
+area.map[0, 0, 0] = player
 print(player.area.name)
 time.sleep(1)
 
 while True:
     os.system('cls')
+    player.stat()
     area.show(player)
 
     d = directions

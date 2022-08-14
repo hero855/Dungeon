@@ -1,5 +1,5 @@
 from Generations.axis import Axis
-from Generations.chank_map import ChankMap
+from Generations.chunk_map import ChunkMap
 
 
 class GameMap:

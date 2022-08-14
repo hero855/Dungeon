@@ -24,7 +24,7 @@ def player_block_contract(player, direction, type_):
     elif direction == 'down':
         z -= 1
 
-    cell = player.map[z][y][x]
+    cell = player.map[z, y, x]
 
     if type_ == 'mov' and isinstance(cell, (Spike, Door, Air)):
         # TODO: replace with in-place algorithm

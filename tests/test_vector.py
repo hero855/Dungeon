@@ -1,12 +1,9 @@
 import unittest
-import sys
-
-sys.path.append('C:/code/Dungeon')
 
 from Generations.vector import Vector2, Vector3
 
 
-class MyTestCase(unittest.TestCase):
+class VectorsTestCase(unittest.TestCase):
 
     def setUp(self) -> None:
         self.v2_1 = Vector2(1, 2)
@@ -30,7 +27,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(v3_6, Vector3(-3, 6, -3))
 
     def test_unpack(self):
-        with self.assertRaises(AttributeError):
+        with self.assertRaises(TypeError):
             x, y = self.v2_1
 
 

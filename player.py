@@ -118,7 +118,7 @@ class Player(object):
         Checks to see if all is in order with avatar
         """
 
-        self.map[self.z][self.y][self.x] = self
+        self.map[self.z, self.y, self.x] = self
 
         if self.exp >= self.exp_limit:
             self.Lvl += 1
@@ -147,13 +147,13 @@ class Player(object):
         return Vector3(self.x, self.y, self.z)
 
     def fall(self):
-        if self.fall_var and type(self.map[self.z - 1][self.y][self.x]) is Air:
-            self.map[self.z][self.y][self.x] = Air()
+        if self.fall_var and type(self.map[self.z - 1, self.y, self.x]) is Air:
+            self.map[self.z, self.y, self.x] = Air()
             self.z -= 1
             self.fall_var = False
-            self.map[self.z][self.y][self.x] = self
+            self.map[self.z, self.y, self.x] = self
 
-        if type(self.map[self.z - 1][self.y][self.x]) is Air:
+        if type(self.map[self.z - 1, self.y, self.x]) is Air:
             self.fall_var = True
 
     def reset(self):
@@ -162,7 +162,7 @@ class Player(object):
         """
         if self.selected:
             self.selected.use = False
-        self.map[self.z][self.y][self.x] = PosthumousChest(self)
+        self.map[self.z, self.y, self.x] = PosthumousChest(self)
         self.z = 0
         self.y = 0
         self.x = 0
@@ -205,15 +205,12 @@ class Player(object):
         if self in links.intoxicated:
             print(*list(set(self.status)))
 
-        print(f'''hp:     {self.hp}
-            armor:  {self.armor}
-            mp:     {self.mp}
-            gold:   {self.gold}
-            
-              
-            exp: {self.exp}/{self.exp_limit}
-             
-            ''')
+        print(f'hp:     {self.hp}')
+        print(f'armor:  {self.armor}')
+        print(f'mp:     {self.mp}')
+        print(f'gold:   {self.gold}')
+        print(f'exp:    {self.exp}/{self.exp_limit}')
+        print(f'x: {self.x}; y: {self.y}; z: {self.z}')
 
     def recovery(self):
         if self.mp < self.full_mp:

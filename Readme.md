@@ -13,7 +13,7 @@ pip install pynput
 
 ## ⚔ Usage
 
-Run command below for playing the my great game right in your prompt
+Run command below for playing my great game right in your prompt
 
 ```bash
 python main.py

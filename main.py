@@ -14,8 +14,8 @@ from links import directions, actions, spec_input
 area = Area('TestArea', height_of_chunk=40)
 area.initial_update()
 player = Player(area, x=0, y=0, z=11)
-player.update()
 area.update(player.location)
+player.update()
 print(player.area.name)
 time.sleep(1)
 

@@ -4,6 +4,8 @@ from Generations.axis import Axis
 
 
 class Plot3D:
+    """TODO: check for no-floats
+    """
     def __init__(self):
         self.__axes = Axis([Axis([Axis([None])])])
 

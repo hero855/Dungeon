@@ -48,8 +48,13 @@ class Area:
 
         slice_to_render = self.map[z, y_start: y_final, x_start: x_final][0]
 
+        half_y = int(len(slice_to_render) / 2)
+        half_x = int(len(slice_to_render[0]) / 2)
+
         for elm_y, row in enumerate(slice_to_render):
+            elm_y -= half_y
             for elm_x, elm in enumerate(row):
+                elm_x -= half_x
                 if isinstance(elm, (Air, Spike)):
                     print(elm.pic(z, elm_y, elm_x, self.map), end='')
                 elif elm is None:

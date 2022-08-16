@@ -10,8 +10,6 @@ class ChunkMap:
     def __getitem__(self, target):
         y, x = target
 
-        print(f"{y = }; {x = }")
-
         rows_range = range(y.start, y.stop) if isinstance(y, slice) else range(y, y + 1)
         elms_range = range(x.start, x.stop) if isinstance(x, slice) else range(x, x + 1)
 

@@ -21,7 +21,7 @@ class Area:
         self.chunk_map = ChunkMap(self)
 
     def initial_update(self):
-        self.chunk_map[0, 0] = Chunk(self, 0, 0)
+        self.chunk_map[0, 0] = Chunk(self, 0, 0, self.height_of_chunk, self.width_of_chunk)
         self.chunk_map[0, 0].generate_heights()
         self.chunk_map[0, 0].generate_blocks()
 
@@ -48,12 +48,10 @@ class Area:
 
         slice_to_render = self.map[z, y_start: y_final, x_start: x_final][0]
 
-        for row in slice_to_render:
-            for elm in row:
+        for elm_y, row in enumerate(slice_to_render):
+            for elm_x, elm in enumerate(row):
                 if isinstance(elm, (Air, Spike)):
-                    elem_y = self.map[z].index(row)
-                    elem_x = row.index(elm)
-                    print(elm.pic(z, elem_y, elem_x, self.map), end='')
+                    print(elm.pic(z, elm_y, elm_x, self.map), end='')
                 elif elm is None:
                     print(' ', end='')
                 else:

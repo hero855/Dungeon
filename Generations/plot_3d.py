@@ -4,9 +4,6 @@ from Generations.axis import Axis
 
 
 class Plot3D:
-    """ TODO: make 3d slice for plot
-    """
-
     def __init__(self):
         self.__axes = Axis([Axis([Axis([None])])])
 
@@ -139,5 +136,6 @@ class Plot3D:
                         elm_counter += 1
                     row_counter += 1
                 lay_counter += 1
+            return
 
-        return self.__axes[z][y][x]
+        self.__axes[z][y][x] = value

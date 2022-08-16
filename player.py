@@ -20,7 +20,7 @@ from Generations.vector import Vector3
 
 class Player(object):
 
-    def __init__(self, area, room=True):
+    def __init__(self, area, x, y, z, room=True):
         self.selected = None
         self.focused_utility_block = None
         self.idx = 0
@@ -82,9 +82,9 @@ class Player(object):
 
         self.count['Source'] = [40, 0, 'on', None]
 
-        self.z = 0
-        self.y = 0
-        self.x = 0
+        self.z = z
+        self.y = y
+        self.x = x
 
         # if room:
         #   Rooms(

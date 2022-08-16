@@ -25,7 +25,7 @@ def generator_for_blocks(location, area, height_of_ground):
 
     #num  = random.randint(1, 10000)
 
-    if z >= height_of_ground:
+    if z > height_of_ground:
         block = Air
     
     # elif z == height_of_ground:
@@ -38,7 +38,7 @@ def generator_for_blocks(location, area, height_of_ground):
     #     else:
     #         block = Air
 
-    elif z < height_of_ground:
+    elif z <= height_of_ground:
 
         block = StoneBlock
 
@@ -48,5 +48,9 @@ def generator_for_blocks(location, area, height_of_ground):
         # else:                        block = GroundBlock
     
     # print(f"{z = }; {y = }; {x = }")
+
+    # if z == 11 and y == 0 and x == 0:
+    #     print(block())
+    #     input()
     
     area.map[z, y, x] = block()

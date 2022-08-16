@@ -39,7 +39,7 @@ class Chunk(object):
             for row in range(-half, half + 1):
                 for elm in range(-half, half + 1):
                     height = self.heights_map[row][elm]
-                    location = Vector3(lay, row, elm)
+                    location = Vector3(elm, row, lay)
                     generator_for_blocks(location, self.area, height)
 
     def send(self, r: int):

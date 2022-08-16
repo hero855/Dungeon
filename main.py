@@ -11,18 +11,18 @@ from player import Player
 from links import directions, actions, spec_input
 
 
-area = Area('TestArea')
-player = Player(area)
+area = Area('TestArea', height_of_chunk=40)
 area.initial_update()
+player = Player(area, x=0, y=0, z=11)
+player.update()
 area.update(player.location)
-area.map[0, 0, 0] = player
 print(player.area.name)
 time.sleep(1)
 
 while True:
     os.system('cls')
     player.stat()
-    area.show(player)
+    area.show(player.location)
 
     d = directions
     d.update(actions)

@@ -1,4 +1,6 @@
 from base.container import Container
+from Items.Resources.Stone import Stone
+from Items.Resources.Raw_stone import RawStone
 from random import randint
 
 from Blocks.Functional.workbench import Workbench
@@ -15,7 +17,7 @@ class StoneBlock(Container):
 
     def give(self, obj):
         # TODO: move to player
-        obj.add_to_inventory([RawStone() for _ in range(randint(3, 5))])
+        # obj.add_to_inventory([RawStone() for _ in range(randint(3, 5))])
 
         if randint(1, 100) in range(30):
             obj.add_to_inventory([Stone() for _ in range(randint(1, 3))])

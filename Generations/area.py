@@ -29,6 +29,7 @@ class Area:
         location_of_player /= self.width_of_chunk
         x = int(location_of_player.x)
         y = int(location_of_player.y)
+        print(x, y)
         chunk = self.chunk_map[y, x]
         if not chunk.is_sanded_message:
             chunk.send(r=1)
@@ -48,18 +49,15 @@ class Area:
 
         slice_to_render = self.map[z, y_start: y_final, x_start: x_final][0]
 
-        half_y = int(len(slice_to_render) / 2)
-        half_x = int(len(slice_to_render[0]) / 2)
-
         for elm_y, row in enumerate(slice_to_render):
-            elm_y -= half_y
+            elm_y += y_start
             for elm_x, elm in enumerate(row):
-                elm_x -= half_x
+                elm_x += x_start
                 if isinstance(elm, (Air, Spike)):
-                    print(elm.pic(z, elm_y, elm_x, self.map), end='')
+                    print(elm.pic(z, elm_y, elm_x, self.map), end=' ')
                 elif elm is None:
-                    print(' ', end='')
+                    print(' ', end=' ')
                 else:
-                    print(elm.pic, end='')
+                    print(elm.pic, end=' ')
             # next row
             print()

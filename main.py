@@ -21,8 +21,11 @@ time.sleep(1)
 
 while True:
     os.system('cls')
+    player.update()
+    area.update(player.location)
+
     player.stat()
-    area.show(player.location)
+    area.show(player.location, radius=10)
 
     d = directions
     d.update(actions)

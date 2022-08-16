@@ -1,5 +1,6 @@
 from Functions.generator_for_blocks import generator_for_blocks
 from Generations.axis import Axis
+from Generations.plot_2d import Plot2D
 from Generations.vector import Vector2, Vector3
 
 
@@ -13,7 +14,7 @@ class Chunk(object):
         self.height = height
         self.is_generated = False
         self.is_sanded_message = False
-        self.heights_map = Axis([])
+        self.heights_map = Plot2D()
 
     def update(self):
         if not self.is_generated:
@@ -25,21 +26,23 @@ class Chunk(object):
     def generate_heights(self):
         half = int(self.width / 2)
         for row in range(-half, half + 1):
-            self.heights_map[row] = Axis([])
             for elm in range(-half, half + 1):
                 height = 10
-                self.heights_map[row][elm] = height
+                self.heights_map[row, elm] = height
 
     def generate_blocks(self):
         self.is_generated = True
 
         half = int(self.width / 2)
+        lay_range = range(self.height)
+        row_range = range(-half, half + 1)
+        elm_range = range(-half, half + 1)
 
-        for lay in range(self.height):
-            for row in range(-half, half + 1):
-                for elm in range(-half, half + 1):
-                    height = self.heights_map[row][elm]
-                    location = Vector3(elm, row, lay)
+        for lay in lay_range:
+            for row in row_range:
+                for elm in elm_range:
+                    height = self.heights_map[row, elm]
+                    location = Vector3(self.y * self.width + elm, self.x * self.width + row, lay)
                     generator_for_blocks(location, self.area, height)
 
     def send(self, r: int):

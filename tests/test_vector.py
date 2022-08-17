@@ -27,8 +27,7 @@ class VectorsTestCase(unittest.TestCase):
         self.assertEqual(v3_6, Vector3(-3, 6, -3))
 
     def test_unpack(self):
-        with self.assertRaises(TypeError):
-            x, y = self.v2_1
+        x, y = self.v2_1
 
 
 if __name__ == '__main__':

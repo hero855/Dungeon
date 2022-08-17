@@ -19,6 +19,9 @@ class Vector2:
     def __rmul__(self, other):
         return (self.y * other.y2) + (self.x * other.x2)
 
+    def __iter__(self):
+        return iter((self.x, self.y))
+
 
 class Vector3:
 
@@ -78,6 +81,5 @@ class Vector3:
     def __str__(self):
         return "(" + str(self.x) + ", " + str(self.y) + ", " + str(self.z) + ")"
 
-    # TODO: make dunder unpacking method
-    # def __enter__(self, *_, **__):
-    #     return self.x, self.y, self.z
+    def __iter__(self):
+        return iter((self.x, self.y, self.z))

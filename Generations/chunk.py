@@ -16,12 +16,13 @@ class Chunk(object):
         self.is_sanded_message = False
         self.heights_map = Plot2D()
 
-    def update(self):
-        if not self.is_generated:
-            self.generate_heights()
-            self.generate_blocks()
-        if not self.is_sanded_message:
-            self.send(2)
+    def generate(self):
+        if self.is_generated:
+            return
+
+        self.is_generated = True
+        self.generate_heights()
+        self.generate_blocks()
 
     def generate_heights(self):
         half = int(self.width / 2)
@@ -31,8 +32,6 @@ class Chunk(object):
                 self.heights_map[row, elm] = height
 
     def generate_blocks(self):
-        self.is_generated = True
-
         half = int(self.width / 2)
         lay_range = range(self.height)
         row_range = range(-half, half + 1)
@@ -55,16 +54,15 @@ class Chunk(object):
         # # # # # # # | > r
         # # # # # # # /
         """
+        if self.is_sanded_message:
+            return
+
         self.is_sanded_message = True
 
-        y_start = self.y - r
-        y_stop = self.y + r + 1
-        x_start = self.x - r
-        x_stop = self.x + r + 1
-        map_slice = self.area.chunk_map[y_start: y_stop, x_start: x_stop]
+        y_slice = slice(self.y - r, self.y + r + 1)
+        x_slice = slice(self.x - r, self.x + r + 1)
+        map_slice = self.area.chunk_map[y_slice, x_slice]
 
         for row in map_slice:
             for chunk in row:
-                if not chunk.is_generated:
-                    chunk.generate_heights()
-                    chunk.generate_blocks()
+                chunk.generate()

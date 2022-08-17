@@ -47,10 +47,4 @@ def generator_for_blocks(location, area, height_of_ground):
         # elif num in range(40 * 100): block = StoneBlock
         # else:                        block = GroundBlock
     
-    # print(f"{z = }; {y = }; {x = }")
-
-    # if z == 11 and y == 0 and x == 0:
-    #     print(block())
-    #     input()
-    
     area.map[z, y, x] = block()

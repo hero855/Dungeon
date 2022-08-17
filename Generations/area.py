@@ -26,38 +26,47 @@ class Area:
         self.chunk_map[0, 0].generate_blocks()
 
     def update(self, location_of_player: Vector3):
-        location_of_player /= self.width_of_chunk
-        x = int(location_of_player.x)
-        y = int(location_of_player.y)
-        print(x, y)
-        chunk = self.chunk_map[y, x]
-        if not chunk.is_sanded_message:
-            chunk.send(r=1)
+        chunk_location = self.get_chunk_location(location_of_player)
+        chunk = self.chunk_map[chunk_location]
+        chunk.send(r=1)
 
-    def show(self, location_of_player: Vector3, radius=5):
-        """Show the map and the objects on it to the player"""
+    def render(self, location_of_player: Vector3, radius=5):
+        """Shows the map and the objects on it to the player"""
 
-        x = location_of_player.x
-        y = location_of_player.y
-        z = location_of_player.z
-
-        y_start = y - radius
-        y_final = y + radius + 1
-
-        x_start = x - radius
-        x_final = x + radius + 1
-
-        slice_to_render = self.map[z, y_start: y_final, x_start: x_final][0]
+        x_range, y_range, z_range = self.calc_ranges(location_of_player, radius)
+        slice_to_render = self.map[z_range, y_range, x_range][0]
 
         for elm_y, row in enumerate(slice_to_render):
-            elm_y += y_start
             for elm_x, elm in enumerate(row):
-                elm_x += x_start
                 if isinstance(elm, (Air, Spike)):
-                    print(elm.pic(z, elm_y, elm_x, self.map), end=' ')
+                    x = x_range.start + elm_x
+                    y = y_range.start + elm_y
+                    z = z_range.start
+                    print(elm.pic(z, y, x, self.map), end=' ')
                 elif elm is None:
                     print(' ', end=' ')
                 else:
                     print(elm.pic, end=' ')
             # next row
             print()
+
+    def get_chunk_location(self, location_of_player: Vector3):
+        chunk_location = location_of_player / (self.width_of_chunk - self.width_of_chunk / 2)
+        chunk_x = int(chunk_location.x)
+        chunk_y = int(chunk_location.y)
+        return chunk_x, chunk_y
+    
+    def calc_ranges(self, location_of_player: Vector3, radius):
+        x, y, z = location_of_player
+
+        x_start = x - radius
+        x_final = x + radius + 1
+        
+        y_start = y - radius
+        y_final = y + radius + 1
+
+        x_slice = slice(x_start, x_final)
+        y_slice = slice(y_start, y_final)
+        z_slice = slice(z, z + 1)
+
+        return x_slice, y_slice, z_slice

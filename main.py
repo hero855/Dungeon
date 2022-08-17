@@ -25,7 +25,7 @@ while True:
     area.update(player.location)
 
     player.stat()
-    area.show(player.location, radius=10)
+    area.render(player.location, radius=10)
 
     d = directions
     d.update(actions)
